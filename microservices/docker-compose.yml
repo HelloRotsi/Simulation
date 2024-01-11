@@ -3,4 +3,6 @@
 #
 # The Compose file can assume that the appropriate commands have already
 # been run to build the Docker images of the various microservices, and
-# create the required Kafka topics.
+# create the required Kafka topics. These should be documented in your
+# answer to the "Containerisation" question of the assessment of your
+# report.
