@@ -1,0 +1,64 @@
+Endpoints:
+
+    POST /videos
+        Purpose: Post a new video
+        Request Body:
+            user (String): Username of the video uploader
+            title (String): Title of the video
+            hashtags (Array): List of hashtags associated with the video
+
+    GET /videos/user/:userId
+        Purpose: List videos uploaded by a specific user
+        Parameters:
+            userId (String): ID or username of the user
+
+    GET /videos/hashtag/:hashtag
+        Purpose: List videos associated with a specific hashtag
+        Parameters:
+            hashtag (String): Hashtag for filtering videos
+
+    POST /videos/watch
+        Purpose: Mark a video as watched
+        Request Body:
+            userId (String): ID or username of the user
+            videoId (String): ID of the video being watched
+
+    POST /videos/like
+        Purpose: Like a video
+        Request Body:
+            userId (String): ID or username of the user
+            videoId (String): ID of the video being liked
+
+    POST /videos/dislike
+        Purpose: Dislike a video
+        Request Body:
+            userId (String): ID or username of the user
+            videoId (String): ID of the video being disliked
+
+Events:
+
+    VideoPostedEvent
+        Purpose: Triggered when a new video is posted
+        Payload:
+            videoId (String): ID of the posted video
+            user (String): Username of the video uploader
+            title (String): Title of the video
+            hashtags (Array): List of hashtags associated with the video
+
+    VideoLikedEvent
+        Purpose: Triggered when a video is liked
+        Payload:
+            videoId (String): ID of the liked video
+            userId (String): ID or username of the user who liked the video
+
+    VideoDislikedEvent
+        Purpose: Triggered when a video is disliked
+        Payload:
+            videoId (String): ID of the disliked video
+            userId (String): ID or username of the user who disliked the video
+
+    VideoWatchedEvent
+        Purpose: Triggered when a video is watched by a certain user
+        Payload:
+            videoId (String): ID of the watched video
+            userId (String): ID or username of the user who watched the video

@@ -1,0 +1,35 @@
+curl -X POST \
+  http://localhost:3000/videos \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "username": "john_doe",
+    "title": "Sample Video",
+    "hashtags": ["fun", "tutorial"],
+    "video_url": "https://www.example.com/sample-video.mp4"
+}'
+
+curl -X POST -H "Content-Type: application/json" -d '{
+  "username": "john_doe",
+  "title": "Sample Video",
+  "hashtags": ["example", "tutorial"],
+  "video_url": "https://example.com/my_first_video.mp4"
+}' http://localhost:3000/videos
+
+curl http://localhost:3000/listuservideos/john_doe
+
+curl http://localhost:3000/videos/videosbyhashtag/fun
+
+curl -X POST -H "Content-Type: application/json" -d '{
+  "username": "john_doe",
+  "title": "Sample Video"
+}' http://localhost:3000/videos/watch
+
+curl -X POST -H "Content-Type: application/json" -d '{
+  "username": "john_doe",
+  "title": "Sample Video"
+}' http://localhost:3000/videos/like
+
+curl -X POST -H "Content-Type: application/json" -d '{
+  "username": "john_doe",
+  "title": "Sample Video"
+}' http://localhost:3000/videos/dislike

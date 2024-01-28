@@ -1,0 +1,9 @@
+
+Trending Hashtag Microservice (THM):
+
+    Endpoints:
+        GET /trending-hashtags: Get current top 10 liked hashtags in the last 1 hour
+    Subscribed Events:
+        VideoPostedEvent
+        VideoLikedEvent
+        VideoDislikedEvent

@@ -1,0 +1,72 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: alvinvictor
+      POSTGRES_PASSWORD: alvinvictor
+      POSTGRES_DB: socialblog
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+    expose:
+      - 5432
+    networks:
+      - socialblog-network
+
+  microservice:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://alvinvictor:alvinvictor@postgres:5432/socialblog
+    networks:
+      - socialblog-network
+    restart: always  
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    restart: always
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    networks:
+      - socialblog-network
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    restart: always
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9092,OUTSIDE://localhost:9093
+      KAFKA_LISTENERS: INSIDE://0.0.0.0:9092,OUTSIDE://0.0.0.0:9093
+      KAFKA_LISTENER_NAME: INSIDE
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    networks:
+      - socialblog-network
+
+  # schema-registry:
+  #   image: confluentinc/cp-schema-registry:latest
+  #   depends_on:
+  #     - kafka
+  #   environment:
+  #     SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: "zookeeper:2181"
+  #     SCHEMA_REGISTRY_HOST_NAME: schema-registry
+  #     SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+  #   ports:
+  #     - "8081:8081"
+  #   networks:
+  #     - socialblog-network
+
+networks:
+  socialblog-network:
+    driver: bridge

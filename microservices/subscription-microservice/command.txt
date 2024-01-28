@@ -1,0 +1,5 @@
+curl http://localhost:5000/next-videos/john_doe/fun
+
+curl -X POST -H "Content-Type: application/json" -d '{"username": "john_doe", "hashtag": "fun"}' http://localhost:5000/unsubscribe
+
+curl -X POST -H "Content-Type: application/json" -d '{"username": "john_doe", "hashtag": "fun"}' http://localhost:5000/subscribe
