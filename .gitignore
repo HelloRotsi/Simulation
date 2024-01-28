@@ -4,6 +4,10 @@
 # Log file
 *.log
 
+.node_modules
+.idea
+.vscode
+
 # BlueJ files
 *.ctxt
 

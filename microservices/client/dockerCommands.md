@@ -20,8 +20,6 @@ docker rm $(docker ps -a -q);
 
 sudo systemctl restart docker.socket docker.service
 
-docker exec -it trending-microservice_kafka_1 bash
-cd /etc/kafka
 echo "auto.create.topics.enable=true" >> server.properties
 
 sudo systemctl restart docker.socket docker.service

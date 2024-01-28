@@ -13,8 +13,8 @@ RUN npm install
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Make port 4000 available to the world outside this container
-EXPOSE 4000
+# Make port 5000 available to the world outside this container
+EXPOSE 5000
 
 # Define environment variable
 ENV NODE_ENV=production

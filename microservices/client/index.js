@@ -4,7 +4,7 @@ import pool from './db.js';
 
 // Create an Express application
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 6000;
 
 // Middleware to parse JSON
 app.use(express.json());

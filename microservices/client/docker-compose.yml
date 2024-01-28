@@ -22,7 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "4000:4000"
+      - "6000:6000"
     depends_on:
       - postgres
     environment:
@@ -39,20 +39,20 @@ services:
     networks:
       - socialblog-network
 
-  kafka:
-    image: confluentinc/cp-kafka:latest
-    restart: always
-    depends_on:
-      - zookeeper
-    environment:
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9092,OUTSIDE://localhost:9093
-      KAFKA_LISTENERS: INSIDE://0.0.0.0:9092,OUTSIDE://0.0.0.0:9093
-      KAFKA_LISTENER_NAME: INSIDE
-      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-    networks:
-      - socialblog-network
+  # kafka:
+  #   image: confluentinc/cp-kafka:latest
+  #   restart: always
+  #   depends_on:
+  #     - zookeeper
+  #   environment:
+  #     KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+  #     KAFKA_ADVERTISED_LISTENERS: INSIDE://kafka:9092,OUTSIDE://localhost:9093
+  #     KAFKA_LISTENERS: INSIDE://0.0.0.0:9092,OUTSIDE://0.0.0.0:9093
+  #     KAFKA_LISTENER_NAME: INSIDE
+  #     KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+  #     KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+  #   networks:
+  #     - socialblog-network
 
   # schema-registry:
   #   image: confluentinc/cp-schema-registry:latest

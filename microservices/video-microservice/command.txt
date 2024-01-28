@@ -3,14 +3,14 @@ curl -X POST \
   -H 'Content-Type: application/json' \
   -d '{
     "username": "john_doe",
-    "title": "Sample Video",
+    "title": "Sample Video3",
     "hashtags": ["fun", "tutorial"],
     "video_url": "https://www.example.com/sample-video.mp4"
 }'
 
 curl -X POST -H "Content-Type: application/json" -d '{
   "username": "john_doe",
-  "title": "Sample Video",
+  "title": "Sample Video2",
   "hashtags": ["example", "tutorial"],
   "video_url": "https://example.com/my_first_video.mp4"
 }' http://localhost:3000/videos
